@@ -4,6 +4,7 @@ import express from 'express';
 import session from 'express-session';
 import bcrypt from 'bcrypt';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { getDB } from './db.js';
 
@@ -190,6 +191,13 @@ app.get('/download', requireAuth, async (req, res) => {
 
     // Ruta al archivo REAL que ya tienes en el proyecto
     const file = path.join(__dirname, 'downloads', 'inventario-app.rar');
+
+    if (!fs.existsSync(file)) {
+      console.error('DOWNLOAD missing file', file);
+      return res
+        .status(500)
+        .send('Archivo de descarga no está disponible en el servidor.');
+    }
 
     res.download(file, 'inventario-app.rar', (err) => {
       if (err) {
