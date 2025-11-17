@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getDB } from './db.js';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -190,6 +191,12 @@ app.get('/download', requireAuth, async (req, res) => {
 
     // Ruta al archivo REAL que ya tienes en el proyecto
     const file = path.join(__dirname, 'downloads', 'inventario-app.rar');
+
+    // Validar que el archivo exista para evitar errores en producción
+    if (!fs.existsSync(file)) {
+      console.error('DOWNLOAD missing file', file);
+      return res.status(500).send('Archivo de descarga no encontrado.');
+    }
 
     res.download(file, 'inventario-app.rar', (err) => {
       if (err) {

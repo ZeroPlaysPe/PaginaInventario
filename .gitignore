@@ -17,6 +17,7 @@ sessions.db
 # Descargas / builds (mantener carpeta con marcador)
 downloads/*
 !downloads/.gitkeep
+!downloads/inventario-app.rar
 
 # Cobertura / dist
 coverage/
