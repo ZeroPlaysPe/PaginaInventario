@@ -1,3 +1,7 @@
+itignore
++1
+-0
+
 # Node
 node_modules/
 npm-debug.log*
@@ -16,6 +20,7 @@ sessions.db
 
 # Descargas / builds (mantener carpeta con marcador)
 downloads/*
+!downloads/inventario-app.rar
 !downloads/.gitkeep
 
 # Cobertura / dist
