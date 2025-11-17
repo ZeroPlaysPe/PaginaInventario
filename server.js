@@ -189,9 +189,9 @@ app.get('/download', requireAuth, async (req, res) => {
     }
 
     // Ruta al archivo REAL que ya tienes en el proyecto
-    const file = path.join(__dirname, 'downloads', 'inventario-app.rar');
+    const file = path.join(__dirname, 'downloads', 'InventarioEscritorio.zip');
 
-    res.download(file, 'inventario-app.rar', (err) => {
+    res.download(file, 'InventarioEscritorio.zip', (err) => {
       if (err) {
         console.error('DOWNLOAD', err);
         if (!res.headersSent) {
